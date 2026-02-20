@@ -6,17 +6,16 @@ namespace NewCSharp
   {
     static void Main(string[] args)
     {
-      // Full name
-      string name = "John Doe";
+      for (int i = 0; i < 10; i++)
+      {
+        if (i == 4)
+        {
+          Console.WriteLine("it reached the continue statement");
+          continue;
 
-      // Location of the letter D
-      int charPos = name.IndexOf("D");
-
-      // Get last name
-      string lastName = name.Substring(charPos);
-
-      // Print the result
-      Console.WriteLine(lastName);
+        }
+        Console.WriteLine(i);
+      }
     }
   }
 }
