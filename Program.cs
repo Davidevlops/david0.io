@@ -1,4 +1,5 @@
 ﻿using System;
+using New2DLoop;
 
 namespace NewCSharp
 {
@@ -6,16 +7,7 @@ namespace NewCSharp
   {
     static void Main(string[] args)
     {
-      for (int i = 0; i < 10; i++)
-      {
-        if (i == 4)
-        {
-          Console.WriteLine("it reached the continue statement");
-          continue;
-
-        }
-        Console.WriteLine(i);
-      }
+      AnotherProgram.AnotherMain();
     }
   }
 }
