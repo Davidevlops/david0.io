@@ -6,11 +6,17 @@ namespace NewCSharp
   {
     static void Main(string[] args)
     {
-      float x = 10.97f, y = 20.8484f, z = 30f;
-      int ww =  (int)x;
-      double dd = (double)y;
-      Console.WriteLine($"x: {ww}, y: {dd}, z: {z}");
-      // Console.WriteLine($"Name: {name}, Length: {length}");
+      // Full name
+      string name = "John Doe";
+
+      // Location of the letter D
+      int charPos = name.IndexOf("D");
+
+      // Get last name
+      string lastName = name.Substring(charPos);
+
+      // Print the result
+      Console.WriteLine(lastName);
     }
   }
 }
