@@ -1,0 +1,59 @@
+<UserControl x:Class="InventoryManagement.Views.ProductView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Product List -->
+        <DataGrid Grid.Column="0" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}"
+                  AutoGenerateColumns="False" IsReadOnly="True" Margin="0,0,10,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="150"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price, StringFormat=C}" Width="80"/>
+                <DataGridTextColumn Header="Stock" Binding="{Binding StockQuantity}" Width="70"/>
+                <DataGridTextColumn Header="Reorder" Binding="{Binding ReorderLevel}" Width="70"/>
+                <DataGridTextColumn Header="Supplier" Binding="{Binding Supplier.Name}" Width="120"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Edit Form -->
+        <StackPanel Grid.Column="1" Width="250" Margin="10,0,0,0">
+            <TextBlock Text="Product Details" FontWeight="Bold" Margin="0,0,0,10"/>
+
+            <Label>Name</Label>
+            <TextBox Text="{Binding ProductName, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsEditMode}"/>
+
+            <Label>Description</Label>
+            <TextBox Text="{Binding Description}" IsEnabled="{Binding IsEditMode}" AcceptsReturn="True" MinHeight="60"/>
+
+            <Label>Price</Label>
+            <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsEditMode}"/>
+
+            <Label>Stock Quantity</Label>
+            <TextBox Text="{Binding StockQuantity, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsEditMode}"/>
+
+            <Label>Reorder Level</Label>
+            <TextBox Text="{Binding ReorderLevel, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsEditMode}"/>
+
+            <Label>Supplier</Label>
+            <ComboBox ItemsSource="{Binding Suppliers}" 
+                      SelectedItem="{Binding SelectedSupplier}"
+                      DisplayMemberPath="Name"
+                      IsEnabled="{Binding IsEditMode}"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Button Content="New" Command="{Binding NewProductCommand}" Margin="0,0,5,0" Padding="10,5"/>
+                <Button Content="Save" Command="{Binding SaveProductCommand}" IsEnabled="{Binding IsEditMode}" Margin="0,0,5,0" Padding="10,5"/>
+                <Button Content="Delete" Command="{Binding DeleteProductCommand}" Margin="0,0,5,0" Padding="10,5"/>
+                <Button Content="Cancel" Command="{Binding CancelEditCommand}" Padding="10,5"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
