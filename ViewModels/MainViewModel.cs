@@ -1,33 +1,53 @@
 // ViewModels/MainViewModel.cs
+
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-namespace InventoryManagement.ViewModels;
-
-public partial class MainViewModel : ObservableObject
+namespace Inventory_Management_System.ViewModels
 {
-    [ObservableProperty]
-    private object? _currentView;
-
-    public IRelayCommand ShowProductsCommand { get; }
-    public IRelayCommand ShowSuppliersCommand { get; }
-    public IRelayCommand ShowAlertsCommand { get; }
-
-    private readonly ProductViewModel _productVM;
-    private readonly SupplierViewModel _supplierVM;
-    private readonly AlertViewModel _alertVM;
-
-    public MainViewModel(ProductViewModel productVM, SupplierViewModel supplierVM, AlertViewModel alertVM)
+    public partial class MainViewModel : ObservableObject
     {
-        _productVM = productVM;
-        _supplierVM = supplierVM;
-        _alertVM = alertVM;
+        [ObservableProperty]
+        private object? currentView;
 
-        ShowProductsCommand = new RelayCommand(() => CurrentView = _productVM);
-        ShowSuppliersCommand = new RelayCommand(() => CurrentView = _supplierVM);
-        ShowAlertsCommand = new RelayCommand(() => CurrentView = _alertVM);
+        public IRelayCommand ShowProductsCommand { get; }
+        public IRelayCommand ShowSuppliersCommand { get; }
+        public IRelayCommand ShowAlertsCommand { get; }
 
-        // Default view
-        CurrentView = _productVM;
+        private readonly ProductViewModel _productVM;
+        private readonly SupplierViewModel _supplierVM;
+        private readonly AlertViewModel _alertVM;
+
+        public MainViewModel(
+            ProductViewModel productVM,
+            SupplierViewModel supplierVM,
+            AlertViewModel alertVM)
+        {
+            _productVM = productVM;
+            _supplierVM = supplierVM;
+            _alertVM = alertVM;
+
+            ShowProductsCommand = new RelayCommand(ShowProducts);
+            ShowSuppliersCommand = new RelayCommand(ShowSuppliers);
+            ShowAlertsCommand = new RelayCommand(ShowAlerts);
+
+            // Default View
+            CurrentView = _productVM;
+        }
+
+        private void ShowProducts()
+        {
+            CurrentView = _productVM;
+        }
+
+        private void ShowSuppliers()
+        {
+            CurrentView = _supplierVM;
+        }
+
+        private void ShowAlerts()
+        {
+            CurrentView = _alertVM;
+        }
     }
 }

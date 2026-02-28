@@ -1,28 +1,38 @@
 // ViewModels/AlertViewModel.cs
+
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-public partial class AlertViewModel : ObservableObject
+using Microsoft.EntityFrameworkCore;
+
+namespace Inventory_Management_System.ViewModels
 {
-    private readonly AppDbContext _context;
-
-    [ObservableProperty]
-    private ObservableCollection<Product> _lowStockProducts = new();
-
-    public IAsyncRelayCommand LoadAlertsCommand { get; }
-
-    public AlertViewModel(AppDbContext context)
+    public partial class AlertViewModel : ObservableObject
     {
-        _context = context;
-        LoadAlertsCommand = new AsyncRelayCommand(LoadAlertsAsync);
-        LoadAlertsCommand.Execute(null);
-    }
+        private readonly AppDbContext _context;
 
-    private async Task LoadAlertsAsync()
-    {
-        await _context.Products.Include(p => p.Supplier)
-            .Where(p => p.StockQuantity <= p.ReorderLevel)
-            .LoadAsync();
+        [ObservableProperty]
+        private ObservableCollection<Product> lowStockProducts = new();
 
-        LowStockProducts = new ObservableCollection<Product>(_context.Products.Local);
+        public IAsyncRelayCommand LoadAlertsCommand { get; }
+
+        public AlertViewModel(AppDbContext context)
+        {
+            _context = context;
+
+            LoadAlertsCommand = new AsyncRelayCommand(LoadAlertsAsync);
+        }
+
+        private async Task LoadAlertsAsync()
+        {
+            var products = await _context.Products
+                .Include(p => p.Supplier)
+                .Where(p => p.StockQuantity <= p.ReorderLevel)
+                .ToListAsync();
+
+            LowStockProducts = new ObservableCollection<Product>(products);
+        }
     }
 }
