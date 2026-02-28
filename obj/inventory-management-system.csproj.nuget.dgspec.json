@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Development\\MyProjects\\david0.io\\inventory-management-system\\inventory-management-system.csproj": {}
+    "C:\\Development\\MyProjects\\Inventory-Management-System\\Inventory-Management-System\\Inventory-Management-System.csproj": {}
   },
   "projects": {
-    "C:\\Development\\MyProjects\\david0.io\\inventory-management-system\\inventory-management-system.csproj": {
+    "C:\\Development\\MyProjects\\Inventory-Management-System\\Inventory-Management-System\\Inventory-Management-System.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\MyProjects\\david0.io\\inventory-management-system\\inventory-management-system.csproj",
-        "projectName": "inventory-management-system",
-        "projectPath": "C:\\Development\\MyProjects\\david0.io\\inventory-management-system\\inventory-management-system.csproj",
+        "projectUniqueName": "C:\\Development\\MyProjects\\Inventory-Management-System\\Inventory-Management-System\\Inventory-Management-System.csproj",
+        "projectName": "Inventory-Management-System",
+        "projectPath": "C:\\Development\\MyProjects\\Inventory-Management-System\\Inventory-Management-System\\Inventory-Management-System.csproj",
         "packagesPath": "C:\\Users\\David\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\MyProjects\\david0.io\\inventory-management-system\\obj\\",
+        "outputPath": "C:\\Development\\MyProjects\\Inventory-Management-System\\Inventory-Management-System\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

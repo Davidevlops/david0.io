@@ -1,4 +1,4 @@
-namespace inventory_management_system;
+namespace Inventory_Management_System;
 
 static class Program
 {
